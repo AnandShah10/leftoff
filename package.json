@@ -2,7 +2,7 @@
   "name": "leftoff",
   "displayName": "LeftOff",
   "description": "Resume work instantly — remembers what you were doing and why, not just what changed.",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "publisher": "AnandShah",
   "license": "MIT",
   "icon": "images/icon.png",

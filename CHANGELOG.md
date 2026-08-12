@@ -3,7 +3,23 @@
 All notable changes to the "LeftOff" extension are documented here.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
-> **Note:** this extension was originally developed under the working name "Context Recovery Engine." All command IDs, settings, and internal storage keys were renamed to the `leftoff.*` namespace before its first Marketplace release, so there is no user-facing migration — anyone installing from the Marketplace only ever sees "LeftOff."
+## [0.9.0]
+
+### Updated
+- `README.md` and `CHANGELOG.md` are updated.
+
+## [0.8.0]
+
+### Added
+- **Multi-provider AI summaries.** No longer Anthropic-only — pick from Google Gemini (free tier), a local OpenAI-compatible LLM server (Ollama, LM Studio, etc — no key, no cost), OpenAI, Anthropic, or Azure OpenAI via `leftoff.aiProvider`.
+- **"LeftOff: Setup AI Provider"** — a guided wizard (provider picker → API key prompt → provider-specific fields like Azure endpoint/deployment or local server URL → optional model override) that turns AI summaries on without ever touching `settings.json`.
+- **Quick-access menu.** A new **▾** status bar item (`leftoff.openMenu`, `Ctrl/Cmd+Alt+L`) lists every action — add note, resume summary, history, AI setup, clearing data — in one QuickPick, so nothing requires digging through the Command Palette.
+- A one-time welcome notification on first activation pointing at the status bar menu.
+- API keys are now stored per-provider (`leftoff.apiKey.<provider>` in SecretStorage), so switching providers doesn't require re-entering a key you'd already set for another one.
+
+### Changed
+- Replaced `leftoff.setApiKey` with `leftoff.setupAI` (the full wizard). `leftoff.clearApiKey` now clears whichever provider is currently active rather than being Anthropic-specific.
+- `leftoff.aiModel` default changed from a hardcoded Anthropic model to blank (meaning "use the selected provider's default").
 
 ## [0.7.0]
 

@@ -1,29 +1,29 @@
 {
     "workbench.colorCustomizations": {
-        "editor.background": "#1d2026",
+        "editor.background": "#201e20",
         "editor.foreground": "#D6DAE0",
         "editorLineNumber.foreground": "#6A737D",
         "editorLineNumber.activeForeground": "#5FB0FF",
-        "editorCursor.foreground": "#67adf4",
+        "editorCursor.foreground": "#8aa2ca",
         "editor.selectionBackground": "#5FB0FF33",
         "editor.lineHighlightBackground": "#5FB0FF14",
-        "activityBar.background": "#191b20",
+        "activityBar.background": "#1c181a",
         "activityBar.foreground": "#D6DAE0",
         "activityBar.activeBorder": "#5fbbac",
-        "activityBarBadge.background": "#70b6c7",
+        "activityBarBadge.background": "#88aea9",
         "activityBarBadge.foreground": "#0b0d10",
-        "sideBar.background": "#191b20",
+        "sideBar.background": "#1c181a",
         "sideBar.foreground": "#D6DAE0",
         "sideBarTitle.foreground": "#D6DAE0",
         "sideBarSectionHeader.background": "#1B1E23",
-        "statusBar.background": "#586a79",
+        "statusBar.background": "#676063",
         "statusBar.foreground": "#D6DAE0",
         "statusBar.debuggingBackground": "#d1a62f",
-        "titleBar.activeBackground": "#191b20",
+        "titleBar.activeBackground": "#1c181a",
         "titleBar.activeForeground": "#D6DAE0",
         "tab.activeBackground": "#1B1E23",
         "tab.inactiveBackground": "#15171B",
-        "tab.activeBorderTop": "#59b1c1",
+        "tab.activeBorderTop": "#60b6bd",
         "terminal.background": "#1B1E23",
         "terminal.foreground": "#D6DAE0",
         "terminal.ansiGreen": "#3FB950",
@@ -40,7 +40,7 @@
         "progressBar.background": "#6cb2ef",
         "editorError.foreground": "#de625d",
         "editorWarning.foreground": "#c5a23f",
-        "breadcrumb.activeSelectionForeground": "#64a6d3"
+        "breadcrumb.activeSelectionForeground": "#61a7d7"
     },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -76,7 +76,7 @@
                     "entity.name.function"
                 ],
                 "settings": {
-                    "foreground": "#3E7FDE"
+                    "foreground": "#8FA6B5"
                 }
             },
             {
