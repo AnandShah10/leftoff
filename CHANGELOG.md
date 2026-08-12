@@ -5,8 +5,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 
 ## [0.9.0]
 
-### Updated
-- `README.md` and `CHANGELOG.md` are updated.
+### Added
+- **Marketplace-ready README.md** — Reworked with engaging hero section, badges, feature highlights, screenshot placeholders, quick-start focused on Marketplace installation, tables for commands/settings, and links to supporting docs.
+- **DEVELOPMENT.md** — Comprehensive guide covering project structure, local setup, debugging, packaging, publishing steps, and architecture notes (moved from old README).
+- **CONTRIBUTING.md** — Guidelines for bug reports, feature requests, PR process, and development workflow.
+- **CODE_OF_CONDUCT.md** — Standard Contributor Covenant to foster a welcoming community.
+
+### Changed
+- Streamlined main README for better Marketplace presentation (shorter, more visual, benefit-oriented while linking to detailed docs).
+- Updated version references and cleaned up outdated notes across documentation.
 
 ## [0.8.0]
 
