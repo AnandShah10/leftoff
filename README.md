@@ -132,7 +132,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 - **Terminal scrollback/cwd is not captured.** VS Code's extension API doesn't expose arbitrary shell history or working directory for terminals it didn't create — only the terminal's name/title is stored as a memory cue.
 - **Diffs are capped, not exhaustive.** To keep `workspaceState` small and fast, capture is limited to the first 20 changed files, and each snippet is truncated to ~40 lines / 3000 chars (full stats — insertions/deletions — are still counted from the untruncated diff). Untracked/newly-added files are recorded by name only (nothing exists in HEAD to diff against).
-- **No AI summarization yet.** The "why" comes from your own quick notes plus the raw diff, not an LLM guessing at your intent. This keeps v0.1 fast, private, and dependency-free.
+
 - **Per-workspace, not global.** Session state is stored via `workspaceState`, so each project has its own independent memory.
 - **Idle detection is focus-based, not truly idle-based.** "Away" is measured as "the VS Code window lost OS focus for N minutes," not keyboard/mouse inactivity while focused — if you leave the window focused but walk away, that isn't detected. There's also a small race window right at the moment focus returns where a same-tick editor event could beat the archive-and-reset to the punch; rare in practice, not something to design around yet.
 - **Debounced, not real-time.** Cursor-movement events are debounced 2s before triggering a re-capture (diffing is comparatively expensive); tab switches, focus loss, and explicit note-adding always persist immediately.
