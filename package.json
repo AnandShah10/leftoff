@@ -1,0 +1,217 @@
+{
+  "name": "leftoff",
+  "displayName": "LeftOff",
+  "description": "Resume work instantly — remembers what you were doing and why, not just what changed.",
+  "version": "0.8.0",
+  "publisher": "AnandShah",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "preview": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "context",
+    "resume",
+    "productivity",
+    "git",
+    "notes",
+    "session",
+    "solo-dev",
+    "ai"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnandShah10/leftoff.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AnandShah10/leftoff/issues"
+  },
+  "homepage": "https://github.com/AnandShah10/leftoff#readme",
+  "galleryBanner": {
+    "color": "#1e2129",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "leftoff.openMenu",
+        "title": "LeftOff: Open Menu"
+      },
+      {
+        "command": "leftoff.addNote",
+        "title": "LeftOff: Add Quick Note (why am I here?)"
+      },
+      {
+        "command": "leftoff.showResume",
+        "title": "LeftOff: Show Resume Summary"
+      },
+      {
+        "command": "leftoff.clearSession",
+        "title": "LeftOff: Clear Saved Session"
+      },
+      {
+        "command": "leftoff.showHistory",
+        "title": "LeftOff: Browse Past Sessions"
+      },
+      {
+        "command": "leftoff.clearHistory",
+        "title": "LeftOff: Clear Session History"
+      },
+      {
+        "command": "leftoff.setupAI",
+        "title": "LeftOff: Setup AI Provider"
+      },
+      {
+        "command": "leftoff.clearApiKey",
+        "title": "LeftOff: Clear AI Provider API Key"
+      }
+    ],
+    "configuration": {
+      "title": "LeftOff",
+      "properties": {
+        "leftoff.enableAiSummary": {
+          "type": "boolean",
+          "default": false,
+          "description": "Generate an AI summary of your last session on reopen. Sends your notes, open file names, and uncommitted diffs to whichever AI provider you configure. Off by default — run 'LeftOff: Setup AI Provider' to turn it on (guided, no settings.json editing needed)."
+        },
+        "leftoff.aiProvider": {
+          "type": "string",
+          "enum": [
+            "gemini",
+            "local",
+            "openai",
+            "anthropic",
+            "azure"
+          ],
+          "enumDescriptions": [
+            "Google Gemini — has a free tier",
+            "Local LLM server (Ollama, LM Studio, etc.) — no API key, no cost",
+            "OpenAI (GPT models)",
+            "Anthropic (Claude models)",
+            "Azure OpenAI (your own resource/deployment)"
+          ],
+          "default": "gemini",
+          "description": "Which AI provider to use for session summaries. Easier to set via 'LeftOff: Setup AI Provider' than editing this directly."
+        },
+        "leftoff.aiModel": {
+          "type": "string",
+          "default": "",
+          "description": "Model name to use. Leave blank to use a sensible default for the selected provider (e.g. gemini-2.0-flash, gpt-4o-mini, claude-haiku-4-5-20251001)."
+        },
+        "leftoff.azureBaseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI resource endpoint, e.g. https://your-resource.openai.azure.com. Only used when leftoff.aiProvider is 'azure'."
+        },
+        "leftoff.azureDeployment": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI deployment name. Only used when leftoff.aiProvider is 'azure'."
+        },
+        "leftoff.azureApiVersion": {
+          "type": "string",
+          "default": "2024-06-01",
+          "description": "Azure OpenAI REST API version. Only used when leftoff.aiProvider is 'azure'."
+        },
+        "leftoff.localBaseUrl": {
+          "type": "string",
+          "default": "http://localhost:11434/v1",
+          "description": "Base URL of a local OpenAI-compatible server (Ollama, LM Studio, llama.cpp server, etc.). Only used when leftoff.aiProvider is 'local'."
+        },
+        "leftoff.maxDiffFiles": {
+          "type": "number",
+          "default": 20,
+          "minimum": 1,
+          "maximum": 200,
+          "description": "Maximum number of changed files to capture diff info for per snapshot."
+        },
+        "leftoff.maxSnippetLines": {
+          "type": "number",
+          "default": 40,
+          "minimum": 1,
+          "maximum": 500,
+          "description": "Maximum number of lines kept per file's diff snippet in the resume panel."
+        },
+        "leftoff.maxSnippetChars": {
+          "type": "number",
+          "default": 3000,
+          "minimum": 100,
+          "maximum": 20000,
+          "description": "Maximum characters kept per file's diff snippet in the resume panel."
+        },
+        "leftoff.maxHistory": {
+          "type": "number",
+          "default": 15,
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Maximum number of past sessions to keep in history."
+        },
+        "leftoff.aiMaxDiffFiles": {
+          "type": "number",
+          "default": 8,
+          "minimum": 0,
+          "maximum": 50,
+          "description": "Maximum number of changed files' diffs included in the AI summary prompt."
+        },
+        "leftoff.aiMaxSnippetChars": {
+          "type": "number",
+          "default": 800,
+          "minimum": 0,
+          "maximum": 5000,
+          "description": "Maximum characters per file's diff included in the AI summary prompt."
+        },
+        "leftoff.aiMaxNotes": {
+          "type": "number",
+          "default": 10,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Maximum number of recent notes included in the AI summary prompt."
+        },
+        "leftoff.idleThresholdMinutes": {
+          "type": "number",
+          "default": 30,
+          "minimum": 0,
+          "maximum": 1440,
+          "description": "If the editor window is unfocused for at least this many minutes, treat the next time it regains focus as a new session: the previous session is archived to history and the resume panel is shown. Set to 0 to disable idle-based session boundaries."
+        },
+        "leftoff.detectBranchSwitch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Treat a git branch switch as a new session boundary: archive the previous branch's session to history and start a fresh one for the new branch, even without restarting the editor."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "leftoff.addNote",
+        "key": "ctrl+alt+n",
+        "mac": "cmd+alt+n"
+      },
+      {
+        "command": "leftoff.openMenu",
+        "key": "ctrl+alt+l",
+        "mac": "cmd+alt+l"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.4.0"
+  }
+}
